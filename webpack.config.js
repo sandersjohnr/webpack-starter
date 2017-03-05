@@ -12,11 +12,17 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader'],
           publicPath: '/dist'
         })
+      },
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
       }
     ]
   },
@@ -32,7 +38,7 @@ module.exports = {
       title: 'Project Demo',
       // minify: { collapseWhitespace: true },
       hash: true,
-      template: './src/index.ejs'
+      template: './src/index.html'
     }),
     new ExtractTextPlugin({
       filename: 'app.css',
